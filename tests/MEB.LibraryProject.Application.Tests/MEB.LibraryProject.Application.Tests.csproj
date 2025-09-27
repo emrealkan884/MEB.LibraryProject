@@ -22,6 +22,6 @@
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="8.0.3" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\src\mEB.LibraryProject\Application\Application.csproj" />
+    <ProjectReference Include="..\..\src\MEB.LibraryProject\Application\Application.csproj" />
   </ItemGroup>
 </Project>
