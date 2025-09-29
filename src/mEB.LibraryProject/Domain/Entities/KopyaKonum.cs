@@ -23,7 +23,7 @@ public class KopyaKonum : Entity<Guid>
 
 
     //Navigation
-    public Kopya Kopya { get; set; }
-    public Konum Konum { get; set; }
-    public Kutuphane Kutuphane { get; set; }
+    public virtual Kopya Kopya { get; set; }
+    public virtual Konum Konum { get; set; }
+    public virtual Kutuphane Kutuphane { get; set; }
 }

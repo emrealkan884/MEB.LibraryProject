@@ -16,6 +16,6 @@ public class EserYazar : Entity<Guid>
     public Guid YazarId { get; set; }
 
     // Navigation
-    public Eser Eser { get; set; }
-    public Yazar Yazar { get; set; }
+    public virtual Eser Eser { get; set; }
+    public virtual Yazar Yazar { get; set; }
 }

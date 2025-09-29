@@ -21,8 +21,8 @@ public class Konum : Entity<Guid>
     public string Ad { get; set; }
 
     // Navigation
-    public Konum? UstKonum { get; set; }
-    public ICollection<Konum> AltKonumlar { get; set; } = new List<Konum>();
-    public ICollection<KopyaKonum> KopyaKonumlar { get; set; } = new List<KopyaKonum>();
-    public Kutuphane Kutuphane { get; set; }
+    public virtual Kutuphane Kutuphane { get; set; }
+    public virtual Konum? UstKonum { get; set; }
+    public virtual ICollection<Konum> AltKonumlar { get; set; } = new List<Konum>();
+    public virtual ICollection<KopyaKonum> KopyaKonumlar { get; set; } = new List<KopyaKonum>();
 }

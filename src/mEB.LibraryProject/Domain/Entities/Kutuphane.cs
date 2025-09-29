@@ -21,7 +21,7 @@ public class Kutuphane : Entity<Guid>
     public Guid? UstKutuphaneId { get; set; }
 
     // Navigation
-    public Kutuphane? UstKutuphane { get; set; }
-    public ICollection<Kopya> Kopyalar { get; set; } = new List<Kopya>();
-    public ICollection<Konum> Konumlar { get; set; } = new List<Konum>();
+    public virtual Kutuphane? UstKutuphane { get; set; }
+    public virtual ICollection<Kopya> Kopyalar { get; set; } = new List<Kopya>();
+    public virtual ICollection<Konum> Konumlar { get; set; } = new List<Konum>();
 }

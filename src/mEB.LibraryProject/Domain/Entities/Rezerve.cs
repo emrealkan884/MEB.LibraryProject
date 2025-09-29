@@ -26,10 +26,10 @@ public class Rezerve : Entity<Guid>
     public DateTime SonGecerlilikTarihi { get; set; } // Rezervasyon geçerlilik süresi
 
     // Navigation
-    public Kopya? Kopya { get; set; } // Onaylanan kopya
-    public Kitap Eser { get; set; } // Eser bilgisi
-    public Kutuphane Kutuphane { get; set; } // Kütüphane bilgisi
-    public Kullanici Kullanici { get; set; } // Rezervasyonu yapan kullanıcı
+    public virtual Kopya? Kopya { get; set; } // Onaylanan kopya
+    public virtual Kitap Eser { get; set; } // Eser bilgisi
+    public virtual Kutuphane Kutuphane { get; set; } // Kütüphane bilgisi
+    public virtual Kullanici Kullanici { get; set; } // Rezervasyonu yapan kullanıcı
 
     #region Is Mantigi Ornek
 

@@ -28,7 +28,7 @@ public class Odunc : Entity<Guid>
     public OduncDurum Durum { get; set; }
 
     // Navigation
-    public Kopya Kopya { get; set; }
-    public Kullanici Kullanici { get; set; }
-    public Kutuphane Kutuphane { get; set; }
+    public virtual Kopya Kopya { get; set; }
+    public virtual Kullanici Kullanici { get; set; }
+    public virtual Kutuphane Kutuphane { get; set; }
 }

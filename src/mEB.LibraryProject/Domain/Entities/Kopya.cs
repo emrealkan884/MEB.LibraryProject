@@ -17,8 +17,9 @@ public class Kopya : Entity<Guid>
     public Guid KutuphaneId { get; set; }
     public string Barkod { get; set; }
 
+    
     // Navigation
-    public Kitap Kitap { get; set; }
-    public Kutuphane Kutuphane { get; set; }
-    public ICollection<KopyaKonum> KopyaKonumlar { get; set; } = new List<KopyaKonum>();
+    public virtual Kitap Kitap { get; set; }
+    public virtual Kutuphane Kutuphane { get; set; }
+    public virtual ICollection<KopyaKonum> KopyaKonumlar { get; set; } = new List<KopyaKonum>();
 }

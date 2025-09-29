@@ -16,6 +16,16 @@ using NArchitecture.Core.Localization.Resource.Yaml.DependencyInjection;
 using NArchitecture.Core.Mailing;
 using NArchitecture.Core.Mailing.MailKit;
 using NArchitecture.Core.Security.JWT;
+using Application.Services.Esers;
+using Application.Services.EserYazars;
+using Application.Services.Konums;
+using Application.Services.Kopyas;
+using Application.Services.KopyaKonums;
+using Application.Services.Kutuphanes;
+using Application.Services.Oduncs;
+using Application.Services.Rezerves;
+using Application.Services.YayinEvis;
+using Application.Services.Yazars;
 
 namespace Application;
 
@@ -53,6 +63,16 @@ public static class ApplicationServiceRegistration
         services.AddYamlResourceLocalization();
 
 
+        services.AddScoped<IEserService, EserManager>();
+        services.AddScoped<IEserYazarService, EserYazarManager>();
+        services.AddScoped<IKonumService, KonumManager>();
+        services.AddScoped<IKopyaService, KopyaManager>();
+        services.AddScoped<IKopyaKonumService, KopyaKonumManager>();
+        services.AddScoped<IKutuphaneService, KutuphaneManager>();
+        services.AddScoped<IOduncService, OduncManager>();
+        services.AddScoped<IRezerveService, RezerveManager>();
+        services.AddScoped<IYayinEviService, YayinEviManager>();
+        services.AddScoped<IYazarService, YazarManager>();
         return services;
     }
 
