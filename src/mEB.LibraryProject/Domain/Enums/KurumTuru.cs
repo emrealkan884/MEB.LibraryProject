@@ -1,6 +1,7 @@
 ﻿namespace Domain.Enums;
+
 public enum KurumTuru
 {
-    Merkez,
-    Okul
+    Merkez = 1,
+    Okul = 2
 }

@@ -4,5 +4,15 @@ namespace Domain.Entities;
 
 public class YayinEvi : Entity<Guid>
 {
-    public string YayinEviAdi { get; set; }
+    public YayinEvi() { }
+
+    public YayinEvi(string adi)
+    {
+        Adi = adi;
+    }
+    
+    public string Adi { get; set; }
+
+    // Navigation
+    public ICollection<Kitap> Kitaplar { get; set; } = new List<Kitap>();
 }
