@@ -4,9 +4,10 @@ public class Kitap : Eser
 {
     public Kitap() { }
 
-    public Kitap(string adi, string dilkodu, string aciklama, string isbn, string sayfaSayisi, Guid yayinEviId,
+    public Kitap(string adi, string dilkodu, string aciklama, string deweyKodu, string marcVerisi,
+        string isbn, string sayfaSayisi, Guid yayinEviId,
         short basimYili, string basimYeri, string baskiBilgisi)
-        : base(adi, dilkodu, aciklama)
+        : base(adi, dilkodu, aciklama, deweyKodu, marcVerisi)
     {
         ISBN = isbn;
         SayfaSayisi = sayfaSayisi;
@@ -21,7 +22,7 @@ public class Kitap : Eser
     public Guid YayinEviId { get; set; }
     public short BasimYili { get; set; }
     public string BasimYeri { get; set; }
-    public string BaskiBilgisi { get; set; } // 2. Baskı
+    public string BaskiBilgisi { get; set; } //2. Baski
 
     // Navigation
     public YayinEvi YayinEvi { get; set; }

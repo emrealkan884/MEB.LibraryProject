@@ -11,7 +11,7 @@ public class Yazar : Entity<Guid>
         Adi = adi;
         Soyadi = soyadi;
     }
-    
+
     public string Adi { get; set; }
     public string Soyadi { get; set; }
 

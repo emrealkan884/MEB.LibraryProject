@@ -10,7 +10,7 @@ public class YayinEvi : Entity<Guid>
     {
         Adi = adi;
     }
-    
+
     public string Adi { get; set; }
 
     // Navigation

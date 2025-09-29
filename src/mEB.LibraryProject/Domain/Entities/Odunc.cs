@@ -7,13 +7,15 @@ public class Odunc : Entity<Guid>
 {
     public Odunc() { }
 
-    public Odunc(Guid kopyaId, Guid kullaniciId, Guid kutuphaneId, DateTime oduncAlmaTarihi, DateTime? iadeTarihi = null)
+    public Odunc(Guid kopyaId, Guid kullaniciId, Guid kutuphaneId, DateTime oduncAlmaTarihi, DateTime sonTeslimTarihi,
+        DateTime? gercekTeslimTarihi = null)
     {
         KopyaId = kopyaId;
         KullaniciId = kullaniciId;
         KutuphaneId = kutuphaneId;
         OduncAlmaTarihi = oduncAlmaTarihi;
-        IadeTarihi = iadeTarihi;
+        SonTeslimTarihi = sonTeslimTarihi;
+        GercekTeslimTarihi = gercekTeslimTarihi;
         Durum = OduncDurum.Aktif;
     }
 
@@ -21,7 +23,8 @@ public class Odunc : Entity<Guid>
     public Guid KullaniciId { get; set; }
     public Guid KutuphaneId { get; set; }
     public DateTime OduncAlmaTarihi { get; set; }
-    public DateTime? IadeTarihi { get; set; }
+    public DateTime SonTeslimTarihi { get; set; }
+    public DateTime? GercekTeslimTarihi { get; set; }
     public OduncDurum Durum { get; set; }
 
     // Navigation

@@ -5,9 +5,19 @@ namespace Domain.Entities;
 
 public class Konum : Entity<Guid>
 {
+    public Konum() { }
+
+    public Konum(Guid kutuphaneId, Guid? ustKonumId, KonumTip konumTip, string ad)
+    {
+        KutuphaneId = kutuphaneId;
+        UstKonumId = ustKonumId;
+        KonumTip = konumTip;
+        Ad = ad;
+    }
+
     public Guid KutuphaneId { get; set; }
     public Guid? UstKonumId { get; set; }
-    public KonumTip Tip { get; set; } 
+    public KonumTip KonumTip { get; set; }
     public string Ad { get; set; }
 
     // Navigation

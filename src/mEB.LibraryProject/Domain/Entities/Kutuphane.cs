@@ -25,4 +25,3 @@ public class Kutuphane : Entity<Guid>
     public ICollection<Kopya> Kopyalar { get; set; } = new List<Kopya>();
     public ICollection<Konum> Konumlar { get; set; } = new List<Konum>();
 }
-

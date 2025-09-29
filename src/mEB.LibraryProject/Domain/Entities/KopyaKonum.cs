@@ -3,7 +3,7 @@
 public class KopyaKonum
 {
     public Guid Id { get; set; }
-    
+
     public Guid KopyaId { get; set; }
     public Kopya Kopya { get; set; }
 

@@ -8,16 +8,20 @@ public class Eser : Entity<Guid>
     {
     }
 
-    public Eser(string adi, string dilkodu, string aciklama) : this()
+    public Eser(string adi, string dilkodu, string aciklama, string deweyKodu, string marcVerisi) : this()
     {
         Adi = adi;
         DilKodu = dilkodu;
         Aciklama = aciklama;
+        DeweyKodu = deweyKodu;
+        MarcVerisi = marcVerisi;
     }
 
     public string Adi { get; set; }
     public string DilKodu { get; set; }
     public string Aciklama { get; set; }
+    public string? DeweyKodu { get; set; } // Dewey kodu
+    public string? MarcVerisi { get; set; } // MARC kaydı (JSON/XML)
 
 
     // Navigation
