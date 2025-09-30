@@ -16,7 +16,7 @@ public class Odunc : Entity<Guid>
         OduncAlmaTarihi = oduncAlmaTarihi;
         SonTeslimTarihi = sonTeslimTarihi;
         GercekTeslimTarihi = gercekTeslimTarihi;
-        Durum = OduncDurum.Aktif;
+        Durum = OduncDurum.Musait;
     }
 
     public Guid KopyaId { get; set; }

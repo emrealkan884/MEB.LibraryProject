@@ -3,28 +3,32 @@
   "isRoot": true,
   "tools": {
     "dotnet-ef": {
-      "version": "8.0.0",
+      "version": "9.0.9",
       "commands": [
         "dotnet-ef"
-      ]
+      ],
+      "rollForward": false
     },
     "csharpier": {
       "version": "0.27.2",
       "commands": [
         "dotnet-csharpier"
-      ]
+      ],
+      "rollForward": false
     },
     "roslynator.dotnet.cli": {
       "version": "0.5.0",
       "commands": [
         "roslynator"
-      ]
+      ],
+      "rollForward": false
     },
     "narchitecture.gen": {
       "version": "1.1.0",
       "commands": [
         "nArchGen"
-      ]
+      ],
+      "rollForward": false
     }
   }
 }

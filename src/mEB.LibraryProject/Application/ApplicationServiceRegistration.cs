@@ -23,7 +23,6 @@ using Application.Services.Kopyas;
 using Application.Services.KopyaKonums;
 using Application.Services.Kutuphanes;
 using Application.Services.Oduncs;
-using Application.Services.Rezerves;
 using Application.Services.YayinEvis;
 using Application.Services.Yazars;
 
@@ -70,7 +69,6 @@ public static class ApplicationServiceRegistration
         services.AddScoped<IKopyaKonumService, KopyaKonumManager>();
         services.AddScoped<IKutuphaneService, KutuphaneManager>();
         services.AddScoped<IOduncService, OduncManager>();
-        services.AddScoped<IRezerveService, RezerveManager>();
         services.AddScoped<IYayinEviService, YayinEviManager>();
         services.AddScoped<IYazarService, YazarManager>();
         return services;

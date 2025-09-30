@@ -15,7 +15,6 @@ public class BaseDbContext : DbContext
     public DbSet<KopyaKonum> KopyaKonums { get; set; }
     public DbSet<Kutuphane> Kutuphanes { get; set; }
     public DbSet<Odunc> Oduncs { get; set; }
-    public DbSet<Rezerve> Rezerves { get; set; }
     public DbSet<YayinEvi> YayinEvis { get; set; }
     public DbSet<Yazar> Yazars { get; set; }
     public DbSet<Kitap> Kitaps { get; set; }

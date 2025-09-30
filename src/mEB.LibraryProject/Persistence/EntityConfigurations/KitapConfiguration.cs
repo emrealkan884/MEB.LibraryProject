@@ -4,27 +4,27 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace Persistence.EntityConfigurations;
 
-public class KitapConfiguration
+public class KitapConfiguration:IEntityTypeConfiguration<Kitap>
 {
     public void Configure(EntityTypeBuilder<Kitap> builder)
     {
-        builder.ToTable("Kitap").HasKey(k => k.Id);
-
-        builder.Property(k => k.Id).HasColumnName("Id").IsRequired();
+        builder.ToTable("Kitaps");
+        //Ortak alanlar (Id, CreatedDate vs) de EserConfiguration'da zaten var
+        
         builder.Property(k => k.BasimYili).HasColumnName("BasimYili").IsRequired();
         builder.Property(k => k.BasimYeri).HasColumnName("BasimYeri").IsRequired();
         builder.Property(k => k.BaskiBilgisi).HasColumnName("BaskiBilgisi").IsRequired();
         builder.Property(k => k.ISBN).HasColumnName("ISBN").IsRequired();
         builder.Property(k => k.SayfaSayisi).HasColumnName("SayfaSayisi").IsRequired();
-        builder.Property(k => k.YayinEviId).HasColumnName("YayinEviId").IsRequired();
-        builder.Property(k => k.CreatedDate).HasColumnName("CreatedDate").IsRequired();
-        builder.Property(k => k.UpdatedDate).HasColumnName("UpdatedDate");
-        builder.Property(k => k.DeletedDate).HasColumnName("DeletedDate");
 
-        builder.HasMany(k => k.Kopyalar);
-        builder.HasMany(k => k.KitapYayınEvleri);
+        builder.HasMany(k => k.KitapsYayinEvis)
+            .WithOne(kye => kye.Kitap)
+            .HasForeignKey(kye => kye.KitapId);
 
-
-        builder.HasQueryFilter(kk => !kk.DeletedDate.HasValue);
+        builder.HasMany(k => k.Kopyalar)
+            .WithOne(k => k.Kitap)
+            .HasForeignKey(k => k.KitapId);
+        
+        //builder.HasQueryFilter(kk => !kk.DeletedDate.HasValue);//EserConfiguration da var
     }
 }

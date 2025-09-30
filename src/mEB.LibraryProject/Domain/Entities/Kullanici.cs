@@ -23,6 +23,5 @@ public class Kullanici : Entity<Guid>
     public KullaniciRol Rol { get; set; } // Yetki seviyesi
 
     // Navigation
-    public virtual ICollection<Rezerve> RezerveKayitlari { get; set; } = new List<Rezerve>();
     public virtual ICollection<Odunc> OduncKayitlari { get; set; } = new List<Odunc>();
 }

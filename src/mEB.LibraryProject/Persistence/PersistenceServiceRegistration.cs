@@ -12,7 +12,7 @@ public static class PersistenceServiceRegistration
 {
     public static IServiceCollection AddPersistenceServices(this IServiceCollection services, IConfiguration configuration)
     {
-        services.AddDbContext<BaseDbContext>(options => options.UseInMemoryDatabase("BaseDb"));
+        services.AddDbContext<BaseDbContext>(options => options.UseSqlServer(configuration.GetConnectionString("MEBLibrary")));
         services.AddDbMigrationApplier(buildServices => buildServices.GetRequiredService<BaseDbContext>());
 
 
@@ -23,7 +23,6 @@ public static class PersistenceServiceRegistration
         services.AddScoped<IKopyaKonumRepository, KopyaKonumRepository>();
         services.AddScoped<IKutuphaneRepository, KutuphaneRepository>();
         services.AddScoped<IOduncRepository, OduncRepository>();
-        services.AddScoped<IRezerveRepository, RezerveRepository>();
         services.AddScoped<IYayinEviRepository, YayinEviRepository>();
         services.AddScoped<IYazarRepository, YazarRepository>();
         return services;
