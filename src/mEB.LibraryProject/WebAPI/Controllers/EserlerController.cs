@@ -2,6 +2,8 @@ using Application.Features.Eserler.Commands.Create;
 using Application.Features.Eserler.Commands.Delete;
 using Application.Features.Eserler.Commands.Update;
 using Application.Features.Eserler.Queries.GetById;
+using Application.Features.Eserler.Queries.GetListByCategory;
+using Domain.Enums;
 using Microsoft.AspNetCore.Mvc;
 
 namespace WebAPI.Controllers;
@@ -44,6 +46,14 @@ public class EserlerController : BaseController
         GetByIdEserResponse response = await Mediator.Send(query);
 
         return Ok(response);
+    }
+    
+    [HttpGet("kategori/{kategori}")]
+    public async Task<IActionResult> GetByKategori(EserKategorisi kategori)
+    {
+        var query = new GetListEserByKategoriQuery { Kategori = kategori };
+        var result = await Mediator.Send(query);
+        return Ok(result);
     }
     
 }

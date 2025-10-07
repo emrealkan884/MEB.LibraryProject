@@ -2,6 +2,7 @@ using Application.Features.Eserler.Commands.Create;
 using Application.Features.Eserler.Commands.Delete;
 using Application.Features.Eserler.Commands.Update;
 using Application.Features.Eserler.Queries.GetById;
+using Application.Features.Eserler.Queries.GetList;
 using AutoMapper;
 using NArchitecture.Core.Application.Responses;
 using Domain.Entities;
@@ -23,8 +24,15 @@ public class MappingProfiles : Profile
         CreateMap<Eser, DeletedEserResponse>();
 
         CreateMap<Eser, GetByIdEserResponse>();
-
-        CreateMap<Eser, GetListKitapListItemDto>();
-        CreateMap<IPaginate<Eser>, GetListResponse<GetListKitapListItemDto>>();
+        
+        CreateMap<Eser, GetListEserListItemDto>()
+            .ForMember(dest => dest.Kategori,
+                opt => opt.MapFrom(src => src.Kategori.ToString()))
+            .ForMember(dest => dest.EserTipi,
+                opt => opt.MapFrom(src => src.EserTipi.ToString()))
+            .ForMember(dest => dest.YazarAdlari,
+                opt => opt.MapFrom(src =>
+                    src.EserlerYazarlar.Select(ey => $"{ey.Yazar.Adi} {ey.Yazar.Soyadi}").ToList()));
+        CreateMap<IPaginate<Eser>, GetListResponse<GetListEserListItemDto>>();
     }
 }

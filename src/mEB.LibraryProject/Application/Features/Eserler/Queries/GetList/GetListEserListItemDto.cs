@@ -10,4 +10,7 @@ public class GetListEserListItemDto : IDto
     public string Aciklama { get; set; }
     public string? DeweyKodu { get; set; }
     public string? MarcVerisi { get; set; }
+    public string Kategori { get; set; }
+    public string EserTipi { get; set; }
+    public List<string> YazarAdlari { get; set; } = new();
 }
