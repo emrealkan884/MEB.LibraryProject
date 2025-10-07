@@ -8,16 +8,16 @@ namespace Persistence.Contexts;
 public class BaseDbContext : DbContext
 {
     protected IConfiguration Configuration { get; set; }
-    public DbSet<Eser> Esers { get; set; }
-    public DbSet<EserYazar> EserYazars { get; set; }
-    public DbSet<Konum> Konums { get; set; }
-    public DbSet<Kopya> Kopyas { get; set; }
-    public DbSet<KopyaKonum> KopyaKonums { get; set; }
-    public DbSet<Kutuphane> Kutuphanes { get; set; }
-    public DbSet<Odunc> Oduncs { get; set; }
-    public DbSet<YayinEvi> YayinEvis { get; set; }
-    public DbSet<Yazar> Yazars { get; set; }
-    public DbSet<Kitap> Kitaps { get; set; }
+    public DbSet<Eser> Eserler { get; set; }
+    public DbSet<EserYazar> EserlerYazarlar { get; set; }
+    public DbSet<Konum> Konumlar { get; set; }
+    public DbSet<Kopya> Kopyalar { get; set; }
+    public DbSet<KopyaKonum> KopyalarKonumlar { get; set; }
+    public DbSet<Kutuphane> Kutuphaneler { get; set; }
+    public DbSet<Odunc> Oduncler { get; set; }
+    public DbSet<YayinEvi> YayinEvleri { get; set; }
+    public DbSet<Yazar> Yazarlar { get; set; }
+    public DbSet<Kitap> Kitaplar { get; set; }
 
     public BaseDbContext(DbContextOptions dbContextOptions, IConfiguration configuration)
         : base(dbContextOptions)

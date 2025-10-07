@@ -27,5 +27,5 @@ public class Eser : Entity<Guid>
     public EserTipi EserTipi { get; set; } 
 
     // Navigation
-    public ICollection<EserYazar> EserYazarlar { get; set; } = new List<EserYazar>();
+    public ICollection<EserYazar> EserlerYazarlar { get; set; } = new List<EserYazar>();
 }

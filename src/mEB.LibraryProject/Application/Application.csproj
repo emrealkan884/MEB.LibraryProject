@@ -21,12 +21,11 @@
 	<PackageReference Include="NArchitecture.Core.Security.DependencyInjection" Version="1.2.0" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Services\" />
-    <Folder Include="Services\Repositories" />
-  </ItemGroup>
-  <ItemGroup>
     <None Update="Features\**\Resources\Locales\*.*.yaml">
         <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Features\Kitaplar\Resources\Locales\Kitaplar.en.yaml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
   </ItemGroup>
 </Project>

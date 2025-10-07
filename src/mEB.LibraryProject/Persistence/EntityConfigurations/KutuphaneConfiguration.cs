@@ -8,7 +8,7 @@ public class KutuphaneConfiguration : IEntityTypeConfiguration<Kutuphane>
 {
     public void Configure(EntityTypeBuilder<Kutuphane> builder)
     {
-        builder.ToTable("Kutuphanes").HasKey(k => k.Id);
+        builder.ToTable("Kutuphaneler").HasKey(k => k.Id);
 
         builder.Property(k => k.Id).HasColumnName("Id").IsRequired();
         builder.Property(k => k.Adi).HasColumnName("Adi").IsRequired();

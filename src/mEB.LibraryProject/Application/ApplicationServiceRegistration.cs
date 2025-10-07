@@ -16,15 +16,16 @@ using NArchitecture.Core.Localization.Resource.Yaml.DependencyInjection;
 using NArchitecture.Core.Mailing;
 using NArchitecture.Core.Mailing.MailKit;
 using NArchitecture.Core.Security.JWT;
-using Application.Services.Esers;
-using Application.Services.EserYazars;
-using Application.Services.Konums;
-using Application.Services.Kopyas;
-using Application.Services.KopyaKonums;
-using Application.Services.Kutuphanes;
-using Application.Services.Oduncs;
-using Application.Services.YayinEvis;
-using Application.Services.Yazars;
+using Application.Services.Eserler;
+using Application.Services.EserlerYazarlar;
+using Application.Services.Kitaplar;
+using Application.Services.Konumlar;
+using Application.Services.Kopyalar;
+using Application.Services.KopyalarKonumlar;
+using Application.Services.Kutuphaneler;
+using Application.Services.Oduncler;
+using Application.Services.YayinEvleri;
+using Application.Services.Yazarlar;
 
 namespace Application;
 
@@ -71,6 +72,7 @@ public static class ApplicationServiceRegistration
         services.AddScoped<IOduncService, OduncManager>();
         services.AddScoped<IYayinEviService, YayinEviManager>();
         services.AddScoped<IYazarService, YazarManager>();
+        services.AddScoped<IKitapService, KitapManager>();
         return services;
     }
 

@@ -8,8 +8,7 @@ public class KitapYayinEviConfiguration: IEntityTypeConfiguration<KitapYayınEvi
 {
     public void Configure(EntityTypeBuilder<KitapYayınEvi> builder)
     {
-        builder.ToTable("KitapsYayinEvis");
-
+        builder.ToTable("KitaplarYayinEvleri");
         builder.HasKey(kye => kye.Id);
 
         builder.Property(kye => kye.KitapId).IsRequired();
@@ -17,13 +16,15 @@ public class KitapYayinEviConfiguration: IEntityTypeConfiguration<KitapYayınEvi
 
         // 🔑 İlişkiler
         builder.HasOne(kye => kye.Kitap)
-            .WithMany(k => k.KitapsYayinEvis)
+            .WithMany(k => k.KitaplarYayinEvleri)
             .HasForeignKey(kye => kye.KitapId)
-            .IsRequired(false); // Buraya ekliyorsun
+            .OnDelete(DeleteBehavior.Cascade);
 
         builder.HasOne(kye => kye.YayinEvi)
-            .WithMany(y => y.KitapsYayinEvis)
+            .WithMany(ye => ye.KitaplarYayinEvleri)
             .HasForeignKey(kye => kye.YayinEviId)
-            .IsRequired(false);
+            .OnDelete(DeleteBehavior.Cascade);
+        
+        builder.HasQueryFilter(ky => !ky.DeletedDate.HasValue);
     }
 }

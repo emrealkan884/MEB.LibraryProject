@@ -8,7 +8,7 @@ public class YayinEviConfiguration : IEntityTypeConfiguration<YayinEvi>
 {
     public void Configure(EntityTypeBuilder<YayinEvi> builder)
     {
-        builder.ToTable("YayinEvis").HasKey(ye => ye.Id);
+        builder.ToTable("YayinEvleri").HasKey(ye => ye.Id);
 
         builder.Property(ye => ye.Id).HasColumnName("Id").IsRequired();
         builder.Property(ye => ye.Adi).HasColumnName("Adi").IsRequired();
@@ -16,7 +16,10 @@ public class YayinEviConfiguration : IEntityTypeConfiguration<YayinEvi>
         builder.Property(ye => ye.UpdatedDate).HasColumnName("UpdatedDate");
         builder.Property(ye => ye.DeletedDate).HasColumnName("DeletedDate");
         
-        builder.HasMany(e => e.KitapsYayinEvis);
+        builder.HasMany(y => y.KitaplarYayinEvleri)
+            .WithOne(ky => ky.YayinEvi)
+            .HasForeignKey(ky => ky.YayinEviId)
+            .OnDelete(DeleteBehavior.Cascade);
 
         builder.HasQueryFilter(ye => !ye.DeletedDate.HasValue);
     }

@@ -8,7 +8,7 @@ public class YazarConfiguration : IEntityTypeConfiguration<Yazar>
 {
     public void Configure(EntityTypeBuilder<Yazar> builder)
     {
-        builder.ToTable("Yazars").HasKey(y => y.Id);
+        builder.ToTable("Yazarlar").HasKey(y => y.Id);
 
         builder.Property(y => y.Id).HasColumnName("Id").IsRequired();
         builder.Property(y => y.Adi).HasColumnName("Adi").IsRequired();
@@ -17,7 +17,10 @@ public class YazarConfiguration : IEntityTypeConfiguration<Yazar>
         builder.Property(y => y.UpdatedDate).HasColumnName("UpdatedDate");
         builder.Property(y => y.DeletedDate).HasColumnName("DeletedDate");
 
-        builder.HasMany(e => e.EserYazarlar);
+        builder.HasMany(y => y.EserlerYazarlar)
+            .WithOne(ey => ey.Yazar)
+            .HasForeignKey(ey => ey.YazarId)
+            .OnDelete(DeleteBehavior.Cascade);
 
         builder.HasQueryFilter(y => !y.DeletedDate.HasValue);
     }

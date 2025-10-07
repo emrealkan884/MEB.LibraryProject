@@ -16,6 +16,7 @@ public class Kitap : Eser
         BasimYeri = basimYeri;
         BaskiBilgisi = baskiBilgisi;
     }
+
     public string ISBN { get; set; }
     public string SayfaSayisi { get; set; }
     public short BasimYili { get; set; }
@@ -23,6 +24,6 @@ public class Kitap : Eser
     public string BaskiBilgisi { get; set; } //2. Baski
 
     // Navigation
-    public virtual ICollection<KitapYayınEvi> KitapsYayinEvis { get; set; } = new List<KitapYayınEvi>();
+    public virtual ICollection<KitapYayınEvi> KitaplarYayinEvleri { get; set; } = new List<KitapYayınEvi>();
     public virtual ICollection<Kopya> Kopyalar { get; set; } = new List<Kopya>();
 }

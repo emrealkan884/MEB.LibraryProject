@@ -8,9 +8,8 @@ public class KopyaConfiguration : IEntityTypeConfiguration<Kopya>
 {
     public void Configure(EntityTypeBuilder<Kopya> builder)
     {
-        builder.ToTable("Kopyas").HasKey(k => k.Id);
-
-        builder.Property(k => k.Id).HasColumnName("Id").IsRequired();
+        builder.ToTable("Kopyalar").HasKey(k => k.Id);
+        
         builder.Property(k => k.KitapId).HasColumnName("KitapId").IsRequired();
         builder.Property(k => k.KutuphaneId).HasColumnName("KutuphaneId").IsRequired();
         builder.Property(k => k.Barkod).HasColumnName("Barkod").IsRequired();
@@ -24,12 +23,16 @@ public class KopyaConfiguration : IEntityTypeConfiguration<Kopya>
             .WithMany(kp => kp.Kopyalar)
             .HasForeignKey(k => k.KitapId)
             .OnDelete(DeleteBehavior.Cascade);
+        
+        builder.HasOne(k => k.Kutuphane)
+            .WithMany(kut => kut.Kopyalar)
+            .HasForeignKey(k => k.KutuphaneId)
+            .OnDelete(DeleteBehavior.Restrict);
 
         // Kopya -> KopyaKonum
-        builder.HasMany(k => k.KopyaKonumlar)
+        builder.HasMany(k => k.KopyalarKonumlar)
             .WithOne(kk => kk.Kopya)
-            .HasForeignKey(kk => kk.KopyaId)
-            .OnDelete(DeleteBehavior.Restrict); // 🔑 cycle engellendi
+            .HasForeignKey(kk => kk.KopyaId);
 
         builder.HasQueryFilter(k => !k.DeletedDate.HasValue);
     }

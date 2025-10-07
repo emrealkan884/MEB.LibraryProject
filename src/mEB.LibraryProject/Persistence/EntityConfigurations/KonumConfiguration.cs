@@ -8,9 +8,8 @@ public class KonumConfiguration : IEntityTypeConfiguration<Konum>
 {
     public void Configure(EntityTypeBuilder<Konum> builder)
     {
-        builder.ToTable("Konums").HasKey(k => k.Id);
-
-        builder.Property(k => k.Id).HasColumnName("Id").IsRequired();
+        builder.ToTable("Konumlar").HasKey(k => k.Id);
+        
         builder.Property(k => k.KutuphaneId).HasColumnName("KutuphaneId").IsRequired();
         builder.Property(k => k.UstKonumId).HasColumnName("UstKonumId");
         builder.Property(k => k.KonumTip).HasColumnName("KonumTip").IsRequired();
@@ -20,17 +19,20 @@ public class KonumConfiguration : IEntityTypeConfiguration<Konum>
         builder.Property(k => k.UpdatedDate).HasColumnName("UpdatedDate");
         builder.Property(k => k.DeletedDate).HasColumnName("DeletedDate");
 
-        // Konum -> AltKonum
-        builder.HasMany(k => k.AltKonumlar)
-            .WithOne(k => k.UstKonum)
+        builder.HasOne(k => k.Kutuphane)
+            .WithMany(kut => kut.Konumlar)
+            .HasForeignKey(k => k.KutuphaneId)
+            .OnDelete(DeleteBehavior.Cascade);
+        
+        builder.HasOne(k => k.UstKonum)
+            .WithMany(k => k.AltKonumlar)
             .HasForeignKey(k => k.UstKonumId)
             .OnDelete(DeleteBehavior.Restrict);
-
+        
         // Konum -> KopyaKonum
         builder.HasMany(k => k.KopyaKonumlar)
             .WithOne(kk => kk.Konum)
-            .HasForeignKey(kk => kk.KonumId)
-            .OnDelete(DeleteBehavior.Restrict);
+            .HasForeignKey(kk => kk.KonumId);
 
         builder.HasQueryFilter(k => !k.DeletedDate.HasValue);
     }

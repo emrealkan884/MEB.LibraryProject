@@ -8,7 +8,7 @@ public class EserYazarConfiguration : IEntityTypeConfiguration<EserYazar>
 {
     public void Configure(EntityTypeBuilder<EserYazar> builder)
     {
-        builder.ToTable("EserYazars").HasKey(ey => ey.Id);
+        builder.ToTable("EserlerYazarlar").HasKey(ey => ey.Id);
 
         builder.Property(ey => ey.Id).HasColumnName("Id").IsRequired();
         builder.Property(ey => ey.EserId).HasColumnName("EserId").IsRequired();
@@ -17,9 +17,19 @@ public class EserYazarConfiguration : IEntityTypeConfiguration<EserYazar>
         builder.Property(ey => ey.UpdatedDate).HasColumnName("UpdatedDate");
         builder.Property(ey => ey.DeletedDate).HasColumnName("DeletedDate");
 
-        builder.HasOne(ey => ey.Eser);
-        builder.HasOne(ey => ey.Yazar);
-        
+
+        builder.HasOne(ey => ey.Eser)
+            .WithMany(e => e.EserlerYazarlar)
+            .HasForeignKey(ey => ey.EserId)
+            .OnDelete(DeleteBehavior.Cascade);
+
+
+        builder.HasOne(ey => ey.Yazar)
+            .WithMany(y => y.EserlerYazarlar)
+            .HasForeignKey(ey => ey.YazarId)
+            .OnDelete(DeleteBehavior.Cascade);
+
+
         builder.HasQueryFilter(ey => !ey.DeletedDate.HasValue);
     }
 }
