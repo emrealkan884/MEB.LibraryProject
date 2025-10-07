@@ -60,7 +60,23 @@ public class KopyaManager : IKopyaService
 
         return addedKopya;
     }
+    public async Task<Kopya> AddOrIncrementAsync(Kopya kopya)
+    {
+        var existingKopya = await _kopyaRepository.GetAsync(
+            k => k.Barkod == kopya.Barkod && k.KutuphaneId == kopya.KutuphaneId,
+            enableTracking: true
+        );
 
+        if (existingKopya is not null)
+        {
+            existingKopya.Count += kopya.Count;
+            existingKopya.UpdatedDate = DateTime.UtcNow;
+            await _kopyaRepository.UpdateAsync(existingKopya);
+            return existingKopya;
+        }
+
+        return await _kopyaRepository.AddAsync(kopya);
+    }
     public async Task<Kopya> UpdateAsync(Kopya kopya)
     {
         Kopya updatedKopya = await _kopyaRepository.UpdateAsync(kopya);

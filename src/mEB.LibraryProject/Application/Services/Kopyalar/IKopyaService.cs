@@ -25,6 +25,8 @@ public interface IKopyaService
         CancellationToken cancellationToken = default
     );
     Task<Kopya> AddAsync(Kopya kopya);
+
+    Task<Kopya> AddOrIncrementAsync(Kopya kopya);
     Task<Kopya> UpdateAsync(Kopya kopya);
     Task<Kopya> DeleteAsync(Kopya kopya, bool permanent = false);
 }

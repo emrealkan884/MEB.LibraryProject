@@ -9,5 +9,6 @@ public class CreateKopyaCommandValidator : AbstractValidator<CreateKopyaCommand>
         RuleFor(c => c.KitapId).NotEmpty();
         RuleFor(c => c.KutuphaneId).NotEmpty();
         RuleFor(c => c.Barkod).NotEmpty();
+        RuleFor(c => c.Count).NotNull();
     }
 }

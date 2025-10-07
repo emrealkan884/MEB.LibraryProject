@@ -6,16 +6,18 @@ public class Kopya : Entity<Guid>
 {
     public Kopya() { }
 
-    public Kopya(Guid kitapId, Guid kutuphaneId, string barkod)
+    public Kopya(Guid kitapId, Guid kutuphaneId, string barkod,int count)
     {
         KitapId = kitapId;
         KutuphaneId = kutuphaneId;
         Barkod = barkod;
+        Count = count;
     }
 
     public Guid KitapId { get; set; }
     public Guid KutuphaneId { get; set; }
     public string Barkod { get; set; }
+    public int Count { get; set; }
 
     
     // Navigation

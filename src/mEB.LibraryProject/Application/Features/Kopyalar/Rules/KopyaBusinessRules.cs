@@ -39,4 +39,6 @@ public class KopyaBusinessRules : BaseBusinessRules
         );
         await KopyaShouldExistWhenSelected(kopya);
     }
+    
+    
 }
