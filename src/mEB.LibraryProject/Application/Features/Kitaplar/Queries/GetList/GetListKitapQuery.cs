@@ -2,6 +2,7 @@ using Application.Services.Repositories;
 using AutoMapper;
 using NArchitecture.Core.Application.Responses;
 using MediatR;
+using Microsoft.EntityFrameworkCore;
 using NArchitecture.Core.Application.Requests;
 using NArchitecture.Core.Persistence.Paging;
 
@@ -25,6 +26,7 @@ public class GetListKitapQuery : IRequest<GetListResponse<GetListKitapListItemDt
             CancellationToken cancellationToken)
         {
             IPaginate<Kitap> kitaplar = await _kitapRepository.GetListAsync(
+                include: k=> k.Include(k=>k.EserlerYazarlar).ThenInclude(ey => ey.Yazar),
                 index: request.PageRequest.PageIndex,
                 size: request.PageRequest.PageSize,
                 cancellationToken: cancellationToken

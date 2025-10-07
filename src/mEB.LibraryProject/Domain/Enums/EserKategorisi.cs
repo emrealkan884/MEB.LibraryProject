@@ -1,6 +1,6 @@
 ﻿namespace Domain.Enums;
 
-public enum Bolum
+public enum EserKategorisi
 {
     Edebiyat = 1,
     Tarih = 2,

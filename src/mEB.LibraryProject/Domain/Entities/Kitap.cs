@@ -7,8 +7,8 @@ public class Kitap : Eser
 
     public Kitap(string adi, string dilkodu, string aciklama, string deweyKodu, string marcVerisi,
         string isbn, string sayfaSayisi,
-        short basimYili, string basimYeri, string baskiBilgisi)
-        : base(adi, dilkodu, aciklama, deweyKodu, marcVerisi,EserTipi.Kitap)
+        short basimYili, string basimYeri, string baskiBilgisi, EserKategorisi kategori )
+        : base(adi, dilkodu, aciklama, deweyKodu, marcVerisi,EserTipi.Kitap, kategori)
     {
         ISBN = isbn;
         SayfaSayisi = sayfaSayisi;

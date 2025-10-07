@@ -10,7 +10,7 @@ namespace WebAPI.Controllers;
 [ApiController]
 public class EserlerController : BaseController
 {
-    [HttpPost]
+    /*[HttpPost]
     public async Task<ActionResult<CreatedEserResponse>> Add([FromBody] CreateEserCommand command)
     {
         CreatedEserResponse response = await Mediator.Send(command);
@@ -35,7 +35,7 @@ public class EserlerController : BaseController
 
         return Ok(response);
     }
-
+    */
     [HttpGet("{id}")]
     public async Task<ActionResult<GetByIdEserResponse>> GetById([FromRoute] Guid id)
     {

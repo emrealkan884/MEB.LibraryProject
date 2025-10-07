@@ -16,6 +16,7 @@ public class KitapConfiguration:IEntityTypeConfiguration<Kitap>
         builder.Property(k => k.BaskiBilgisi).HasColumnName("BaskiBilgisi");
         builder.Property(k => k.ISBN).HasColumnName("ISBN").IsRequired();
         builder.Property(k => k.SayfaSayisi).HasColumnName("SayfaSayisi");
+        //builder.Property(k => k.EserlerYazarlar).HasColumnName("Yazarlar");
 
         // Navigation
         builder.HasMany(k => k.KitaplarYayinEvleri)
