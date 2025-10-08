@@ -11,11 +11,13 @@ namespace Application.Features.Oduncler.Rules;
 public class OduncBusinessRules : BaseBusinessRules
 {
     private readonly IOduncRepository _oduncRepository;
+    private readonly IKopyaBirimRepository _kopyaBirimRepository;
     private readonly ILocalizationService _localizationService;
 
-    public OduncBusinessRules(IOduncRepository oduncRepository, ILocalizationService localizationService)
+    public OduncBusinessRules(IOduncRepository oduncRepository, IKopyaBirimRepository kopyaBirimRepository, ILocalizationService localizationService)
     {
         _oduncRepository = oduncRepository;
+        _kopyaBirimRepository = kopyaBirimRepository;
         _localizationService = localizationService;
     }
 
@@ -51,6 +53,17 @@ public class OduncBusinessRules : BaseBusinessRules
             cancellationToken: cancellationToken
         );
 
+        if (mevcutOdunc)
+            await throwBusinessException(OdunclerBusinessMessages.KitapMusaitDegil);
+    }
+
+    public async Task KopyaBirimMusaitOlmali(Guid kopyaBirimId, CancellationToken cancellationToken)
+    {
+        bool mevcutOdunc = await _oduncRepository.AnyAsync(
+            predicate: o => o.KopyaBirimId == kopyaBirimId &&
+                            (o.Durum == OduncDurum.OduncVerildi || o.Durum == OduncDurum.RezerveEdildi),
+            cancellationToken: cancellationToken
+        );
         if (mevcutOdunc)
             await throwBusinessException(OdunclerBusinessMessages.KitapMusaitDegil);
     }

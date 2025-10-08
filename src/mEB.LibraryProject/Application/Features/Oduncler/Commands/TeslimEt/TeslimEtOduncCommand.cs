@@ -15,15 +15,18 @@ public class TeslimEtOduncCommand : IRequest<TeslimEdildiOduncResponse>
         : IRequestHandler<TeslimEtOduncCommand, TeslimEdildiOduncResponse>
     {
         private readonly IOduncRepository _oduncRepository;
+        private readonly IKopyaBirimRepository _kopyaBirimRepository;
         private readonly OduncBusinessRules _businessRules;
         private readonly IMapper _mapper;
 
         public TeslimEtOduncCommandHandler(
             IOduncRepository oduncRepository,
+            IKopyaBirimRepository kopyaBirimRepository,
             OduncBusinessRules businessRules,
             IMapper mapper)
         {
             _oduncRepository = oduncRepository;
+            _kopyaBirimRepository = kopyaBirimRepository;
             _businessRules = businessRules;
             _mapper = mapper;
         }
@@ -45,6 +48,17 @@ public class TeslimEtOduncCommand : IRequest<TeslimEdildiOduncResponse>
             odunc.GercekTeslimTarihi = DateTime.Now;
 
             await _oduncRepository.UpdateAsync(odunc);
+
+            // Fiziksel kopya durumu da geri "Musait" olmalı
+            if (odunc.KopyaBirimId.HasValue)
+            {
+                var birim = await _kopyaBirimRepository.GetAsync(x => x.Id == odunc.KopyaBirimId.Value, cancellationToken: ct);
+                if (birim != null)
+                {
+                    birim.Durum = OduncDurum.Musait;
+                    await _kopyaBirimRepository.UpdateAsync(birim);
+                }
+            }
 
             return _mapper.Map<TeslimEdildiOduncResponse>(odunc);
         }

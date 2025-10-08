@@ -13,6 +13,7 @@ using Persistence;
 using Swashbuckle.AspNetCore.SwaggerUI;
 using System.Text.Json.Serialization;
 using WebAPI;
+using Application.Features.Users.Constants;
 
 WebApplicationBuilder builder = WebApplication.CreateBuilder(args);
 
@@ -37,6 +38,19 @@ builder.Services.AddApplicationServices(
 builder.Services.AddPersistenceServices(builder.Configuration);
 builder.Services.AddInfrastructureServices();
 builder.Services.AddHttpContextAccessor();
+builder.Services.AddAuthorization(options =>
+{
+    options.AddPolicy("policy.admin", p => p.RequireClaim("role", UsersOperationClaims.Admin));
+    options.AddPolicy("policy.merkez", p => p.RequireAssertion(ctx =>
+        ctx.User.HasClaim("role", UsersOperationClaims.BakanlikYetkilisi) ||
+        ctx.User.HasClaim("role", UsersOperationClaims.Admin)));
+    options.AddPolicy("policy.okul", p => p.RequireAssertion(ctx =>
+        ctx.User.HasClaim("role", UsersOperationClaims.OkulKutuphaneYoneticisi) ||
+        ctx.User.HasClaim("role", UsersOperationClaims.Kutuphaneci) ||
+        ctx.User.HasClaim("role", UsersOperationClaims.Ogretmen) ||
+        ctx.User.HasClaim("role", UsersOperationClaims.Ogrenci) ||
+        ctx.User.HasClaim("role", UsersOperationClaims.Admin)));
+});
 
 builder.Services.AddDistributedMemoryCache();
 

@@ -11,6 +11,7 @@ public class OduncConfiguration : IEntityTypeConfiguration<Odunc>
         builder.ToTable("Oduncler").HasKey(o => o.Id);
         
         builder.Property(o => o.KopyaId).HasColumnName("KopyaId").IsRequired();
+        builder.Property(o => o.KopyaBirimId).HasColumnName("KopyaBirimId");
         builder.Property(o => o.KullaniciId).HasColumnName("KullaniciId").IsRequired();
         builder.Property(o => o.KutuphaneId).HasColumnName("KutuphaneId").IsRequired();
         builder.Property(o => o.OduncAlmaTarihi).HasColumnName("OduncAlmaTarihi").IsRequired();
@@ -26,6 +27,12 @@ public class OduncConfiguration : IEntityTypeConfiguration<Odunc>
         builder.HasOne(o => o.Kopya)
             .WithMany()
             .HasForeignKey(o => o.KopyaId)
+            .OnDelete(DeleteBehavior.Restrict);
+
+        // Odunc -> KopyaBirim (opsiyonel)
+        builder.HasOne(o => o.KopyaBirim)
+            .WithMany()
+            .HasForeignKey(o => o.KopyaBirimId)
             .OnDelete(DeleteBehavior.Restrict);
 
         // Odunc -> Kullanici

@@ -22,6 +22,7 @@ using Application.Services.Kitaplar;
 using Application.Services.Konumlar;
 using Application.Services.Kopyalar;
 using Application.Services.KopyalarKonumlar;
+using Application.Services.KopyaBirimler;
 using Application.Services.Kutuphaneler;
 using Application.Services.Oduncler;
 using Application.Services.YayinEvleri;
@@ -68,6 +69,7 @@ public static class ApplicationServiceRegistration
         services.AddScoped<IKonumService, KonumManager>();
         services.AddScoped<IKopyaService, KopyaManager>();
         services.AddScoped<IKopyaKonumService, KopyaKonumManager>();
+        services.AddScoped<IKopyaBirimService, KopyaBirimManager>();
         services.AddScoped<IKutuphaneService, KutuphaneManager>();
         services.AddScoped<IOduncService, OduncManager>();
         services.AddScoped<IYayinEviService, YayinEviManager>();

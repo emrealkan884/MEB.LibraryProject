@@ -18,6 +18,11 @@ public class BaseDbContext : DbContext
     public DbSet<YayinEvi> YayinEvleri { get; set; }
     public DbSet<Yazar> Yazarlar { get; set; }
     public DbSet<Kitap> Kitaplar { get; set; }
+    public DbSet<KopyaBirim> KopyaBirimler { get; set; }
+    public DbSet<MarcKaydi> MarcKayitlari { get; set; }
+    public DbSet<MarcAlan> MarcAlanlar { get; set; }
+    public DbSet<DeweySiniflama> DeweySiniflamalar { get; set; }
+    public DbSet<DijitalIcerik> DijitalIcerikler { get; set; }
 
     public BaseDbContext(DbContextOptions dbContextOptions, IConfiguration configuration)
         : base(dbContextOptions)

@@ -13,6 +13,8 @@ public static class PersistenceServiceRegistration
     public static IServiceCollection AddPersistenceServices(this IServiceCollection services, IConfiguration configuration)
     {
         services.AddDbContext<BaseDbContext>(options => options.UseSqlServer(configuration.GetConnectionString("MEBLibrary")));
+        // Map DbContext to BaseDbContext so handlers injecting DbContext resolve properly
+        services.AddScoped<DbContext>(sp => sp.GetRequiredService<BaseDbContext>());
         services.AddDbMigrationApplier(buildServices => buildServices.GetRequiredService<BaseDbContext>());
 
 
@@ -21,6 +23,7 @@ public static class PersistenceServiceRegistration
         services.AddScoped<IKonumRepository, KonumRepository>();
         services.AddScoped<IKopyaRepository, KopyaRepository>();
         services.AddScoped<IKopyaKonumRepository, KopyaKonumRepository>();
+        services.AddScoped<IKopyaBirimRepository, KopyaBirimRepository>();
         services.AddScoped<IKutuphaneRepository, KutuphaneRepository>();
         services.AddScoped<IOduncRepository, OduncRepository>();
         services.AddScoped<IYayinEviRepository, YayinEviRepository>();

@@ -20,6 +20,7 @@ public class Odunc : Entity<Guid>
     }
 
     public Guid KopyaId { get; set; }
+    public Guid? KopyaBirimId { get; set; }
     public Guid KullaniciId { get; set; }
     public Guid KutuphaneId { get; set; }
     public DateTime OduncAlmaTarihi { get; set; }
@@ -29,6 +30,7 @@ public class Odunc : Entity<Guid>
 
     // Navigation
     public virtual Kopya Kopya { get; set; }
+    public virtual KopyaBirim? KopyaBirim { get; set; }
     public virtual Kullanici Kullanici { get; set; }
     public virtual Kutuphane Kutuphane { get; set; }
 }

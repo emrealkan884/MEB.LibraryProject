@@ -8,6 +8,8 @@ using Application.Features.Oduncler.Queries.GetList;
 using NArchitecture.Core.Application.Requests;
 using NArchitecture.Core.Application.Responses;
 using Microsoft.AspNetCore.Mvc;
+using Application.Features.Oduncler.Commands.BulkLoan;
+using Application.Features.Oduncler.Commands.CancelReservation;
 
 namespace WebAPI.Controllers;
 
@@ -70,6 +72,19 @@ public class OdunclerController : BaseController
         return Ok(response);
     }
     
+        [HttpPost("bulk")]
+        public async Task<ActionResult<IReadOnlyList<Guid>>> BulkLoan([FromBody] BulkLoanCommand command)
+        {
+            var result = await Mediator.Send(command);
+            return Ok(result);
+        }
+
+        [HttpPut("{id}/rezervasyon-iptal")]
+        public async Task<IActionResult> CancelReservation([FromRoute] Guid id)
+        {
+            await Mediator.Send(new CancelReservationCommand { OduncId = id });
+            return NoContent();
+        }
     // 7. Müsait Kopyalar (kullanıcıya seçenek sunmak için)
     [HttpGet("musait-kopyalar/{eserId}")]
     public async Task<ActionResult<List<MusaitKopyaDto>>> GetMusaitKopyalar([FromRoute] Guid eserId)
