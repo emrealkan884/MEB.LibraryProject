@@ -16,6 +16,11 @@ public class MappingProfiles : Profile
     {
         CreateMap<CreateKopyaCommand, Kopya>();
         CreateMap<Kopya, CreatedKopyaResponse>();
+        CreateMap<Kitap, KitapInKopyaDto>()
+            .ForMember(dest => dest.Kategori, opt => opt.MapFrom(src => src.Kategori))
+            .ForMember(dest => dest.YazarAdları,
+                opt => opt.MapFrom(src =>
+                    src.EserlerYazarlar.Select(ey => $"{ey.Yazar.Adi} {ey.Yazar.Soyadi}").ToList()));
 
         CreateMap<UpdateKopyaCommand, Kopya>();
         CreateMap<Kopya, UpdatedKopyaResponse>();
@@ -25,7 +30,7 @@ public class MappingProfiles : Profile
 
         CreateMap<Kopya, GetByIdKopyaResponse>();
 
-        CreateMap<Kopya, GetListKopyaListItemDto>();
+        CreateMap<Kopya, GetListKopyaListItemDto>().ReverseMap();
         CreateMap<IPaginate<Kopya>, GetListResponse<GetListKopyaListItemDto>>();
     }
 }

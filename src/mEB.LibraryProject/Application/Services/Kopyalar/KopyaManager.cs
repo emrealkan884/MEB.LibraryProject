@@ -90,4 +90,9 @@ public class KopyaManager : IKopyaService
 
         return deletedKopya;
     }
+    
+    public async Task<IPaginate<Kopya>> GetListWithRelationsAsync(int index = 0, int size = 10)
+    {
+        return await _kopyaRepository.GetListWithRelationsAsync(index, size);
+    }
 }

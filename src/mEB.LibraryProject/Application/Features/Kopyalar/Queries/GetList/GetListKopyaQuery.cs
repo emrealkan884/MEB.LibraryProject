@@ -25,13 +25,13 @@ public class GetListKopyaQuery : IRequest<GetListResponse<GetListKopyaListItemDt
 
         public async Task<GetListResponse<GetListKopyaListItemDto>> Handle(GetListKopyaQuery request, CancellationToken cancellationToken)
         {
-            IPaginate<Kopya> kopyas = await _kopyaRepository.GetListAsync(
+            IPaginate<Kopya> kopyalar = await _kopyaRepository.GetListWithRelationsAsync(
                 index: request.PageRequest.PageIndex,
                 size: request.PageRequest.PageSize, 
                 cancellationToken: cancellationToken
             );
 
-            GetListResponse<GetListKopyaListItemDto> response = _mapper.Map<GetListResponse<GetListKopyaListItemDto>>(kopyas);
+            GetListResponse<GetListKopyaListItemDto> response = _mapper.Map<GetListResponse<GetListKopyaListItemDto>>(kopyalar);
             return response;
         }
     }

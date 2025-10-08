@@ -27,6 +27,8 @@ public interface IKopyaService
     Task<Kopya> AddAsync(Kopya kopya);
 
     Task<Kopya> AddOrIncrementAsync(Kopya kopya);
+    Task<IPaginate<Kopya>> GetListWithRelationsAsync(int index = 0, int size = 10);
+    
     Task<Kopya> UpdateAsync(Kopya kopya);
     Task<Kopya> DeleteAsync(Kopya kopya, bool permanent = false);
 }

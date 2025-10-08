@@ -3,6 +3,7 @@ using Application.Features.Eserler.Commands.Delete;
 using Application.Features.Eserler.Commands.Update;
 using Application.Features.Eserler.Queries.GetById;
 using Application.Features.Eserler.Queries.GetList;
+using Application.Features.Eserler.Queries.GetListByDynamic;
 using AutoMapper;
 using NArchitecture.Core.Application.Responses;
 using Domain.Entities;
@@ -24,7 +25,7 @@ public class MappingProfiles : Profile
         CreateMap<Eser, DeletedEserResponse>();
 
         CreateMap<Eser, GetByIdEserResponse>();
-        
+
         CreateMap<Eser, GetListEserListItemDto>()
             .ForMember(dest => dest.Kategori,
                 opt => opt.MapFrom(src => src.Kategori.ToString()))
@@ -33,6 +34,19 @@ public class MappingProfiles : Profile
             .ForMember(dest => dest.YazarAdlari,
                 opt => opt.MapFrom(src =>
                     src.EserlerYazarlar.Select(ey => $"{ey.Yazar.Adi} {ey.Yazar.Soyadi}").ToList()));
+
+        CreateMap<Eser, GetListByDynamicEserListItemDto>()
+            .ForMember(dest => dest.YazarAdları,
+                opt => opt.MapFrom(src =>
+                    src.EserlerYazarlar
+                        .Select(ey => $"{ey.Yazar.Adi} {ey.Yazar.Soyadi}")
+                        .ToList()))
+            .ForMember(dest => dest.EserTipi,
+                opt => opt.MapFrom(src => src.EserTipi.ToString()))
+            .ForMember(dest => dest.Kategori,
+                opt => opt.MapFrom(src => src.Kategori.ToString()));
+        
         CreateMap<IPaginate<Eser>, GetListResponse<GetListEserListItemDto>>();
+        CreateMap<IPaginate<Eser>, GetListResponse<GetListByDynamicEserListItemDto>>();
     }
 }

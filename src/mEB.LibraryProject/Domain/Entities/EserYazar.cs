@@ -18,4 +18,5 @@ public class EserYazar : Entity<Guid>
     // Navigation
     public virtual Eser Eser { get; set; }
     public virtual Yazar Yazar { get; set; }
+    
 }

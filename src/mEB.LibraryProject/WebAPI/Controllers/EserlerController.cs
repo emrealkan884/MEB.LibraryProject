@@ -3,8 +3,11 @@ using Application.Features.Eserler.Commands.Delete;
 using Application.Features.Eserler.Commands.Update;
 using Application.Features.Eserler.Queries.GetById;
 using Application.Features.Eserler.Queries.GetListByCategory;
+using Application.Features.Eserler.Queries.GetListByDynamic;
 using Domain.Enums;
 using Microsoft.AspNetCore.Mvc;
+using NArchitecture.Core.Application.Requests;
+using NArchitecture.Core.Persistence.Dynamic;
 
 namespace WebAPI.Controllers;
 
@@ -47,7 +50,7 @@ public class EserlerController : BaseController
 
         return Ok(response);
     }
-    
+
     [HttpGet("kategori/{kategori}")]
     public async Task<IActionResult> GetByKategori(EserKategorisi kategori)
     {
@@ -56,4 +59,18 @@ public class EserlerController : BaseController
         return Ok(result);
     }
     
+    [HttpPost("GetList/ByDynamic")]
+    public async Task<IActionResult> GetListByDynamic(
+        [FromQuery] PageRequest pageRequest,
+        [FromBody] DynamicQuery dynamicQuery)
+    {
+        var query = new GetListByDynamicEserQuery
+        {
+            PageRequest = pageRequest,
+            DynamicQuery = dynamicQuery
+        };
+
+        var result = await Mediator.Send(query);
+        return Ok(result);
+    }
 }

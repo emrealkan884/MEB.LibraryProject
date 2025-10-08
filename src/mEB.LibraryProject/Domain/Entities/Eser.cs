@@ -32,4 +32,5 @@ public abstract class Eser : Entity<Guid>
 
     // Navigation
     public ICollection<EserYazar> EserlerYazarlar { get; set; } = new List<EserYazar>();
+    
 }
