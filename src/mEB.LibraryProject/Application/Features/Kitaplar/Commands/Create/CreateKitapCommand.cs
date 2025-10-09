@@ -2,6 +2,7 @@ using Application.Features.Eserler.Rules;
 using Application.Services.Repositories;
 using AutoMapper;
 using Domain.Entities;
+using Application.Services.KitapBaskilar;
 using Domain.Enums;
 using MediatR;
 
@@ -13,6 +14,7 @@ public class CreateKitapCommand : IRequest<CreatedKitapResponse>
     public string? Aciklama { get; set; }
     public required string DeweyKodu { get; set; }
     public required string MarcVerisi { get; set; }
+    public required Guid YayinEviId { get; set; }
     public required string ISBN {get;set;}
     public required ICollection<Guid> YazarIdler { get; set; }
     public required EserKategorisi Kategori { get; set; }
@@ -25,12 +27,14 @@ public class CreateKitapCommand : IRequest<CreatedKitapResponse>
     {
         private readonly IMapper _mapper;
         private readonly IKitapRepository _kitapRepository;
+        private readonly IKitapBaskiService _kitapBaskiService;
         private readonly EserBusinessRules _kitapBusinessRules;
 
-        public CreateKitapCommandHandler(IMapper mapper, IKitapRepository kitapRepository, EserBusinessRules kitapBusinessRules)
+        public CreateKitapCommandHandler(IMapper mapper, IKitapRepository kitapRepository, IKitapBaskiService kitapBaskiService, EserBusinessRules kitapBusinessRules)
         {
             _mapper = mapper;
             _kitapRepository = kitapRepository;
+            _kitapBaskiService = kitapBaskiService;
             _kitapBusinessRules = kitapBusinessRules;
         }
 
@@ -45,6 +49,9 @@ public class CreateKitapCommand : IRequest<CreatedKitapResponse>
             }
 
             await _kitapRepository.AddAsync(kitap);
+
+            // Normalize & validate ISBN then create initial edition (KitapBaski)
+            await _kitapBaskiService.CreateAsync(kitap, request.YayinEviId, request.ISBN, request.SayfaSayisi, request.BasimYili, request.BasimYeri, request.BaskiBilgisi, null);
 
             CreatedKitapResponse response = _mapper.Map<CreatedKitapResponse>(kitap);
             return response;

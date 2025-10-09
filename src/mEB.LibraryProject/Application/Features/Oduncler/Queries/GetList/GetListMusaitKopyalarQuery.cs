@@ -8,7 +8,7 @@ namespace Application.Features.Oduncler.Queries.GetList;
 
 public class GetListMusaitKopyalarQuery : IRequest<List<MusaitKopyaDto>>
 {
-    public Guid EserId { get; set; }            // veya KitapId
+    public Guid KitapBaskiId { get; set; }
     public Guid? KutuphaneId { get; set; }      // opsiyonel filtre
     
     public class GetMusaitKopyalarQueryHandler 
@@ -29,7 +29,7 @@ public class GetListMusaitKopyalarQuery : IRequest<List<MusaitKopyaDto>>
         {
             // İlgili eserin kopyaları
             var baseQuery = _kopyaRepository.Query()
-                .Where(k => k.KitapId == request.EserId);
+                .Where(k => k.KitapBaskiId == request.KitapBaskiId);
 
             if (request.KutuphaneId.HasValue)
                 baseQuery = baseQuery.Where(k => k.KutuphaneId == request.KutuphaneId.Value);

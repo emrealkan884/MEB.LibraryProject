@@ -16,9 +16,12 @@ public class KopyaRepository : EfRepositoryBase<Kopya, Guid, BaseDbContext>, IKo
     public async Task<IPaginate<Kopya>> GetListWithRelationsAsync(int index = 0, int size = 10, CancellationToken cancellationToken = default)
     {
         return await Context.Kopyalar
-            .Include(k => k.Kitap)
-            .ThenInclude(k => k.EserlerYazarlar)
-            .ThenInclude(ey => ey.Yazar)
+            .Include(k => k.KitapBaski)
+                .ThenInclude(b => b.Kitap)
+                    .ThenInclude(k => k.EserlerYazarlar)
+                        .ThenInclude(ey => ey.Yazar)
+            .Include(k => k.KitapBaski)
+                .ThenInclude(b => b.YayinEvi)
             .ToPaginateAsync(index, size, cancellationToken: cancellationToken);
     }
 }

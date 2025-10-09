@@ -6,24 +6,13 @@ public class Kitap : Eser
     public Kitap() { }
 
     public Kitap(string adi, string dilkodu, string aciklama, string deweyKodu, string marcVerisi,
-        string isbn, string sayfaSayisi,
-        short basimYili, string basimYeri, string baskiBilgisi, EserKategorisi kategori )
+        EserKategorisi kategori )
         : base(adi, dilkodu, aciklama, deweyKodu, marcVerisi,EserTipi.Kitap, kategori)
     {
-        ISBN = isbn;
-        SayfaSayisi = sayfaSayisi;
-        BasimYili = basimYili;
-        BasimYeri = basimYeri;
-        BaskiBilgisi = baskiBilgisi;
     }
 
-    public string ISBN { get; set; }
-    public string SayfaSayisi { get; set; }
-    public short BasimYili { get; set; }
-    public string BasimYeri { get; set; }
-    public string BaskiBilgisi { get; set; } //2. Baski
+    // Edition-specific fields moved to KitapBaski
 
     // Navigation
-    public virtual ICollection<KitapYayınEvi> KitaplarYayinEvleri { get; set; } = new List<KitapYayınEvi>();
-    public virtual ICollection<Kopya> Kopyalar { get; set; } = new List<Kopya>();
+    public virtual ICollection<KitapBaski> Baskilar { get; set; } = new List<KitapBaski>();
 }

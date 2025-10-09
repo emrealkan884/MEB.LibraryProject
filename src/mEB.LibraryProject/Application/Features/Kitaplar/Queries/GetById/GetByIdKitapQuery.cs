@@ -1,6 +1,7 @@
 using Application.Services.Repositories;
 using AutoMapper;
 using MediatR;
+using Microsoft.EntityFrameworkCore;
 
 public class GetByIdKitapQuery : IRequest<GetByIdKitapResponse>
 {
@@ -22,7 +23,9 @@ public class GetByIdKitapQuery : IRequest<GetByIdKitapResponse>
 
         public async Task<GetByIdKitapResponse> Handle(GetByIdKitapQuery request, CancellationToken cancellationToken)
         {
-            Kitap? kitap = await _kitapRepository.GetAsync(predicate: e => e.Id == request.Id,
+            Kitap? kitap = await _kitapRepository.GetAsync(
+                predicate: e => e.Id == request.Id,
+                include: k => k.Include(k=>k.Baskilar).ThenInclude(b => b.YayinEvi),
                 cancellationToken: cancellationToken);
             await _kitapBusinessRules.KitapShouldExistWhenSelected(kitap);
 

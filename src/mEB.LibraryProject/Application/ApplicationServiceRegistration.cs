@@ -23,6 +23,7 @@ using Application.Services.Konumlar;
 using Application.Services.Kopyalar;
 using Application.Services.KopyalarKonumlar;
 using Application.Services.KopyaBirimler;
+using Application.Services.KitapBaskilar;
 using Application.Services.Kutuphaneler;
 using Application.Services.Oduncler;
 using Application.Services.YayinEvleri;
@@ -75,6 +76,7 @@ public static class ApplicationServiceRegistration
         services.AddScoped<IYayinEviService, YayinEviManager>();
         services.AddScoped<IYazarService, YazarManager>();
         services.AddScoped<IKitapService, KitapManager>();
+        services.AddScoped<IKitapBaskiService, KitapBaskiManager>();
         return services;
     }
 

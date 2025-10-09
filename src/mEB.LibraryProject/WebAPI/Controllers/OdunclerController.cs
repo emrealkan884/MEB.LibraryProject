@@ -86,10 +86,10 @@ public class OdunclerController : BaseController
             return NoContent();
         }
     // 7. Müsait Kopyalar (kullanıcıya seçenek sunmak için)
-    [HttpGet("musait-kopyalar/{eserId}")]
-    public async Task<ActionResult<List<MusaitKopyaDto>>> GetMusaitKopyalar([FromRoute] Guid eserId)
+    [HttpGet("musait-kopyalar/{kitapBaskiId}")]
+    public async Task<ActionResult<List<MusaitKopyaDto>>> GetMusaitKopyalar([FromRoute] Guid kitapBaskiId)
     {
-        GetListMusaitKopyalarQuery query = new() { EserId = eserId };
+        GetListMusaitKopyalarQuery query = new() { KitapBaskiId = kitapBaskiId };
         List<MusaitKopyaDto> response = await Mediator.Send(query);
         return Ok(response);
     }

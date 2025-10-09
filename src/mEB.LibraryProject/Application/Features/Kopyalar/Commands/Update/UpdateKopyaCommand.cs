@@ -9,7 +9,7 @@ namespace Application.Features.Kopyalar.Commands.Update;
 public class UpdateKopyaCommand : IRequest<UpdatedKopyaResponse>
 {
     public Guid Id { get; set; }
-    public required Guid KitapId { get; set; }
+    public required Guid KitapBaskiId { get; set; }
     public required Guid KutuphaneId { get; set; }
     public required string Barkod { get; set; }
 

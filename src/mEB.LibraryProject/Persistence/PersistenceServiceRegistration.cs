@@ -29,6 +29,7 @@ public static class PersistenceServiceRegistration
         services.AddScoped<IYayinEviRepository, YayinEviRepository>();
         services.AddScoped<IYazarRepository, YazarRepository>();
         services.AddScoped<IKitapRepository, KitapRepository>();
+        services.AddScoped<IKitapBaskiRepository, KitapBaskiRepository>();
         return services;
     }
 }

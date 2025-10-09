@@ -9,7 +9,7 @@ namespace Application.Features.Kopyalar.Commands.Create;
 
 public class CreateKopyaCommand : IRequest<CreatedKopyaResponse>
 {
-    public required Guid KitapId { get; set; }
+    public required Guid KitapBaskiId { get; set; }
     public required Guid KutuphaneId { get; set; }
     public required int Count { get; set; }
     public required string Barkod { get; set; }

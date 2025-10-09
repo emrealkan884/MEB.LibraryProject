@@ -15,11 +15,7 @@ public class YayinEviConfiguration : IEntityTypeConfiguration<YayinEvi>
         builder.Property(ye => ye.CreatedDate).HasColumnName("CreatedDate").IsRequired();
         builder.Property(ye => ye.UpdatedDate).HasColumnName("UpdatedDate");
         builder.Property(ye => ye.DeletedDate).HasColumnName("DeletedDate");
-        
-        builder.HasMany(y => y.KitaplarYayinEvleri)
-            .WithOne(ky => ky.YayinEvi)
-            .HasForeignKey(ky => ky.YayinEviId)
-            .OnDelete(DeleteBehavior.Cascade);
+        // Legacy KitapYayinEvi ilişkisi kaldırıldı; baskı düzeyinde YayinEvi referansı var
 
         builder.HasQueryFilter(ye => !ye.DeletedDate.HasValue);
     }

@@ -6,22 +6,22 @@ public class Kopya : Entity<Guid>
 {
     public Kopya() { }
 
-    public Kopya(Guid kitapId, Guid kutuphaneId, string barkod,int count)
+    public Kopya(Guid kitapBaskiId, Guid kutuphaneId, string barkod,int count)
     {
-        KitapId = kitapId;
+        KitapBaskiId = kitapBaskiId;
         KutuphaneId = kutuphaneId;
         Barkod = barkod;
         Count = count;
     }
 
-    public Guid KitapId { get; set; }
+    public Guid KitapBaskiId { get; set; }
     public Guid KutuphaneId { get; set; }
     public string Barkod { get; set; }
     public int Count { get; set; }
 
     
     // Navigation
-    public virtual Kitap Kitap { get; set; }
+    public virtual KitapBaski KitapBaski { get; set; }
     public virtual Kutuphane Kutuphane { get; set; }
     public virtual ICollection<KopyaKonum> KopyalarKonumlar { get; set; } = new List<KopyaKonum>();
 }

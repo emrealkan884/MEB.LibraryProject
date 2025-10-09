@@ -13,7 +13,5 @@ public class YayinEvi : Entity<Guid>
 
     public string Adi { get; set; }
     
-    //Navigation
-
-    public virtual ICollection<KitapYayınEvi> KitaplarYayinEvleri { get; set; } = new List<KitapYayınEvi>();
+    // Navigation simplified; editions (KitapBaski) reference YayinEvi directly
 }

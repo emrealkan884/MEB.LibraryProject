@@ -10,7 +10,7 @@ public class KopyaConfiguration : IEntityTypeConfiguration<Kopya>
     {
         builder.ToTable("Kopyalar").HasKey(k => k.Id);
         
-        builder.Property(k => k.KitapId).HasColumnName("KitapId").IsRequired();
+        builder.Property(k => k.KitapBaskiId).HasColumnName("KitapBaskiId").IsRequired();
         builder.Property(k => k.KutuphaneId).HasColumnName("KutuphaneId").IsRequired();
         builder.Property(k => k.Barkod).HasColumnName("Barkod").IsRequired();
 
@@ -18,10 +18,10 @@ public class KopyaConfiguration : IEntityTypeConfiguration<Kopya>
         builder.Property(k => k.UpdatedDate).HasColumnName("UpdatedDate");
         builder.Property(k => k.DeletedDate).HasColumnName("DeletedDate");
 
-        // Kopya -> Kitap
-        builder.HasOne(k => k.Kitap)
-            .WithMany(kp => kp.Kopyalar)
-            .HasForeignKey(k => k.KitapId)
+        // Kopya -> KitapBaski
+        builder.HasOne(k => k.KitapBaski)
+            .WithMany()
+            .HasForeignKey(k => k.KitapBaskiId)
             .OnDelete(DeleteBehavior.Cascade);
         
         builder.HasOne(k => k.Kutuphane)
