@@ -4,16 +4,16 @@ using Domain.Entities;
 using Domain.Enums;
 using MediatR;
 
-namespace Application.Features.Oduncler.Commands.BulkLoan;
+namespace Application.Features.Oduncler.Commands.TopluOduncVer;
 
-public class BulkLoanCommand : IRequest<IReadOnlyList<Guid>>
+public class TopluOduncVerCommand : IRequest<IReadOnlyList<Guid>>
 {
     public required Guid KullaniciId { get; set; }
     public required Guid KutuphaneId { get; set; }
     public required List<Guid> KopyaBirimIds { get; set; }
     public int? GunSayisi { get; set; }
 
-    public class Handler : IRequestHandler<BulkLoanCommand, IReadOnlyList<Guid>>
+    public class Handler : IRequestHandler<TopluOduncVerCommand, IReadOnlyList<Guid>>
     {
         private readonly IOduncRepository _oduncRepository;
         private readonly IKopyaBirimRepository _kopyaBirimRepository;
@@ -21,7 +21,7 @@ public class BulkLoanCommand : IRequest<IReadOnlyList<Guid>>
         public Handler(IOduncRepository oduncRepository, IKopyaBirimRepository kopyaBirimRepository, OduncBusinessRules rules)
         { _oduncRepository = oduncRepository; _kopyaBirimRepository = kopyaBirimRepository; _rules = rules; }
 
-        public async Task<IReadOnlyList<Guid>> Handle(BulkLoanCommand request, CancellationToken ct)
+        public async Task<IReadOnlyList<Guid>> Handle(TopluOduncVerCommand request, CancellationToken ct)
         {
             var createdIds = new List<Guid>();
             foreach (var birimId in request.KopyaBirimIds)

@@ -5,6 +5,7 @@ namespace Domain.Entities;
 
 public class DijitalIcerik : Entity<Guid>
 {
+	//bir eserin birden çok dijital sürümü/formatı olur (PDF, ePub, ses, video)
 	public DijitalIcerik() { }
 
 	public DijitalIcerik(Guid eserId, string tur, string url):base()

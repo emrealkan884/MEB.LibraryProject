@@ -1,10 +1,11 @@
 using Application.Services.Repositories;
+using NArchitecture.Core.Application.Rules;
 using NArchitecture.Core.CrossCuttingConcerns.Exception.Types;
 using NArchitecture.Core.Localization.Abstraction;
 
 namespace Application.Features.Kitaplar.Rules;
 
-public class KitapBaskiBusinessRules
+public class KitapBaskiBusinessRules : BaseBusinessRules
 {
     private readonly IKitapBaskiRepository _kitapBaskiRepository;
     private readonly ILocalizationService _localizationService;
