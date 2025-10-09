@@ -45,7 +45,7 @@ public class CreateKitapCommand : IRequest<CreatedKitapResponse>
             if (request.YazarIdler is not null)
             {
                 foreach (var yazarId in request.YazarIdler)
-                    kitap.EserlerYazarlar.Add(new EserYazar(yazarId, kitap.Id));
+                    kitap.Yazarlar.Add(new EserYazar(yazarId, kitap.Id));
             }
 
             await _kitapRepository.AddAsync(kitap);

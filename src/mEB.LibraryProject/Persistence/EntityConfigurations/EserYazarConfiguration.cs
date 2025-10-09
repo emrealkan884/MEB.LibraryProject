@@ -19,13 +19,13 @@ public class EserYazarConfiguration : IEntityTypeConfiguration<EserYazar>
 
 
         builder.HasOne(ey => ey.Eser)
-            .WithMany(e => e.EserlerYazarlar)
+            .WithMany(e => e.Yazarlar)
             .HasForeignKey(ey => ey.EserId)
             .OnDelete(DeleteBehavior.Cascade);
 
 
         builder.HasOne(ey => ey.Yazar)
-            .WithMany(y => y.EserlerYazarlar)
+            .WithMany(y => y.Eserler)
             .HasForeignKey(ey => ey.YazarId)
             .OnDelete(DeleteBehavior.Cascade);
 

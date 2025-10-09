@@ -21,13 +21,13 @@ public class KopyaKonumConfiguration : IEntityTypeConfiguration<KopyaKonum>
 
         // KopyaKonum -> Kopya
         builder.HasOne(kk => kk.Kopya)
-            .WithMany(kp => kp.KopyalarKonumlar)
+            .WithMany(kp => kp.Konumlar)
             .HasForeignKey(kk => kk.KopyaId)
             .OnDelete(DeleteBehavior.Cascade);
 
         // KopyaKonum -> Konum
         builder.HasOne(kk => kk.Konum)
-            .WithMany(kon => kon.KopyaKonumlar)
+            .WithMany(kon => kon.Kopyalar)
             .HasForeignKey(kk => kk.KonumId)
             .OnDelete(DeleteBehavior.Restrict);
 

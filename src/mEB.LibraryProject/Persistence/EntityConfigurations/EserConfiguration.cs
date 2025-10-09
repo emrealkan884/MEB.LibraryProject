@@ -23,7 +23,7 @@ public class EserConfiguration : IEntityTypeConfiguration<Eser>
         builder.Property(e => e.Kategori).HasColumnName("Kategori").IsRequired().HasConversion<int>();
 
 
-        builder.HasMany(e => e.EserlerYazarlar)
+        builder.HasMany(e => e.Yazarlar)
             .WithOne(ey => ey.Eser)
             .HasForeignKey(ey => ey.EserId)
             .OnDelete(DeleteBehavior.Cascade);

@@ -23,5 +23,5 @@ public class Kopya : Entity<Guid>
     // Navigation
     public virtual KitapBaski KitapBaski { get; set; }
     public virtual Kutuphane Kutuphane { get; set; }
-    public virtual ICollection<KopyaKonum> KopyalarKonumlar { get; set; } = new List<KopyaKonum>();
+    public virtual ICollection<KopyaKonum> Konumlar { get; set; } = new List<KopyaKonum>();
 }

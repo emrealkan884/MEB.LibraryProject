@@ -15,6 +15,6 @@ public class Yazar : Entity<Guid>
     public string Adi { get; set; }
     public string Soyadi { get; set; }
 
-    // Navigation
-    public virtual ICollection<EserYazar> EserlerYazarlar { get; set; } = new List<EserYazar>();
+    // Navigation property
+    public virtual ICollection<EserYazar> Eserler { get; set; } = new List<EserYazar>();
 }

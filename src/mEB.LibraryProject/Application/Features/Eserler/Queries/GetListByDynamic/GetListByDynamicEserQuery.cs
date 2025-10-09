@@ -32,7 +32,7 @@ namespace Application.Features.Eserler.Queries.GetListByDynamic
                 var eserler = await _eserRepository.GetListByDynamicAsync(
                     dynamic: request.DynamicQuery,
                     include: e => e
-                        .Include(e => e.EserlerYazarlar)
+                        .Include(e => e.Yazarlar)
                         .ThenInclude(ey => ey.Yazar),
                     index: request.PageRequest.PageIndex,
                     size: request.PageRequest.PageSize,

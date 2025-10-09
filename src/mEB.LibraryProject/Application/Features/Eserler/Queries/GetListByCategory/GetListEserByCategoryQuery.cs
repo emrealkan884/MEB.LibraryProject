@@ -31,7 +31,7 @@ public class GetListEserByKategoriQuery : IRequest<GetListResponse<GetListEserLi
             var eserler = await _eserRepository.GetListAsync(
                 predicate: e => e.Kategori == request.Kategori,
                 include: e => e
-                    .Include(x => x.EserlerYazarlar)
+                    .Include(x => x.Yazarlar)
                     .ThenInclude(ey => ey.Yazar),
                 cancellationToken: cancellationToken
             );

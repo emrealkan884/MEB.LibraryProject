@@ -1,3 +1,7 @@
+using Application.Features.Eserler.Rules;
+using Application.Services.Repositories;
+using AutoMapper;
+using Domain.Entities;
 using MediatR;
 
 namespace Application.Features.DijitalIcerikler.Commands.Create;
@@ -8,11 +12,18 @@ public class CreateDijitalIcerikCommand : IRequest<CreatedDijitalIcerikResponse>
     public required string Tur { get; set; }
     public required string Url { get; set; }
 
-    public class Handler : IRequestHandler<CreateDijitalIcerikCommand, CreatedDijitalIcerikResponse>
+    public class CreateDijitalIcerikCommandHandler : IRequestHandler<CreateDijitalIcerikCommand, CreatedDijitalIcerikResponse>
     {
-        public Task<CreatedDijitalIcerikResponse> Handle(CreateDijitalIcerikCommand request, CancellationToken cancellationToken)
+        private readonly IMapper _mapper;
+        private readonly IDijitalIcerikRepository _dijitalIcerikRepository;
+        public async Task<CreatedDijitalIcerikResponse> Handle(CreateDijitalIcerikCommand request, CancellationToken cancellationToken)
         {
-            return Task.FromResult(new CreatedDijitalIcerikResponse { Id = Guid.Empty });
+            DijitalIcerik dijitalIcerik = _mapper.Map<DijitalIcerik>(request);
+
+            await _dijitalIcerikRepository.AddAsync(dijitalIcerik);
+
+            CreatedDijitalIcerikResponse response = _mapper.Map<CreatedDijitalIcerikResponse>(dijitalIcerik);
+            return response;
         }
     }
 }

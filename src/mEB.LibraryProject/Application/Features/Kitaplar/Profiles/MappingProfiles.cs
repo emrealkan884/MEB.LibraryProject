@@ -23,7 +23,7 @@ public class MappingProfiles : Profile
         CreateMap<Kitap, GetListKitapListItemDto>()
             .ForMember(dest => dest.YazarAdları,
                 opt => opt.MapFrom(src =>
-                    src.EserlerYazarlar.Select(ey => $"{ey.Yazar.Adi} {ey.Yazar.Soyadi}").ToList()));
+                    src.Yazarlar.Select(ey => $"{ey.Yazar.Adi} {ey.Yazar.Soyadi}").ToList()));
         CreateMap<IPaginate<Kitap>, GetListResponse<GetListKitapListItemDto>>();
     }
 }

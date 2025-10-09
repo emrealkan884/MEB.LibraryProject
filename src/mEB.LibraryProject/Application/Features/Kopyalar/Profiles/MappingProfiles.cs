@@ -20,7 +20,7 @@ public class MappingProfiles : Profile
             .ForMember(dest => dest.Kategori, opt => opt.MapFrom(src => src.Kategori))
             .ForMember(dest => dest.YazarAdları,
                 opt => opt.MapFrom(src =>
-                    src.EserlerYazarlar.Select(ey => $"{ey.Yazar.Adi} {ey.Yazar.Soyadi}").ToList()));
+                    src.Yazarlar.Select(ey => $"{ey.Yazar.Adi} {ey.Yazar.Soyadi}").ToList()));
 
         // When projecting a Kopya, populate edition info from KitapBaski
         CreateMap<KitapBaski, KitapInKopyaDto>()
@@ -34,7 +34,7 @@ public class MappingProfiles : Profile
             .ForMember(dest => dest.MarcVerisi, opt => opt.MapFrom(src => src.Kitap.MarcVerisi))
             .ForMember(dest => dest.Kategori, opt => opt.MapFrom(src => src.Kitap.Kategori))
             .ForMember(dest => dest.YazarAdları,
-                opt => opt.MapFrom(src => src.Kitap.EserlerYazarlar.Select(ey => $"{ey.Yazar.Adi} {ey.Yazar.Soyadi}").ToList()));
+                opt => opt.MapFrom(src => src.Kitap.Yazarlar.Select(ey => $"{ey.Yazar.Adi} {ey.Yazar.Soyadi}").ToList()));
 
         CreateMap<UpdateKopyaCommand, Kopya>();
         CreateMap<Kopya, UpdatedKopyaResponse>();

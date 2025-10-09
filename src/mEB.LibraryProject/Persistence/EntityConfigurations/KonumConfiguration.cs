@@ -30,7 +30,7 @@ public class KonumConfiguration : IEntityTypeConfiguration<Konum>
             .OnDelete(DeleteBehavior.Restrict);
         
         // Konum -> KopyaKonum
-        builder.HasMany(k => k.KopyaKonumlar)
+        builder.HasMany(k => k.Kopyalar)
             .WithOne(kk => kk.Konum)
             .HasForeignKey(kk => kk.KonumId);
 

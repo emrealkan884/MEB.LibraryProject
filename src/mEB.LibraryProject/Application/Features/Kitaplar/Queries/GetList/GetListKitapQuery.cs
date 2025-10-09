@@ -27,7 +27,7 @@ public class GetListKitapQuery : IRequest<GetListResponse<GetListKitapListItemDt
         {
             IPaginate<Kitap> kitaplar = await _kitapRepository.GetListAsync(
                 include: k=> k
-                    .Include(k=>k.EserlerYazarlar).ThenInclude(ey => ey.Yazar)
+                    .Include(k=>k.Yazarlar).ThenInclude(ey => ey.Yazar)
                     .Include(k=>k.Baskilar).ThenInclude(b => b.YayinEvi),
                 index: request.PageRequest.PageIndex,
                 size: request.PageRequest.PageSize,

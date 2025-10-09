@@ -33,12 +33,12 @@ public class MappingProfiles : Profile
                 opt => opt.MapFrom(src => src.EserTipi.ToString()))
             .ForMember(dest => dest.YazarAdlari,
                 opt => opt.MapFrom(src =>
-                    src.EserlerYazarlar.Select(ey => $"{ey.Yazar.Adi} {ey.Yazar.Soyadi}").ToList()));
+                    src.Yazarlar.Select(ey => $"{ey.Yazar.Adi} {ey.Yazar.Soyadi}").ToList()));
 
         CreateMap<Eser, GetListByDynamicEserListItemDto>()
             .ForMember(dest => dest.YazarAdları,
                 opt => opt.MapFrom(src =>
-                    src.EserlerYazarlar
+                    src.Yazarlar
                         .Select(ey => $"{ey.Yazar.Adi} {ey.Yazar.Soyadi}")
                         .ToList()))
             .ForMember(dest => dest.EserTipi,

@@ -18,7 +18,7 @@ public class KopyaRepository : EfRepositoryBase<Kopya, Guid, BaseDbContext>, IKo
         return await Context.Kopyalar
             .Include(k => k.KitapBaski)
                 .ThenInclude(b => b.Kitap)
-                    .ThenInclude(k => k.EserlerYazarlar)
+                    .ThenInclude(k => k.Yazarlar)
                         .ThenInclude(ey => ey.Yazar)
             .Include(k => k.KitapBaski)
                 .ThenInclude(b => b.YayinEvi)

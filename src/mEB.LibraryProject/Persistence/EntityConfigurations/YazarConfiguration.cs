@@ -17,7 +17,7 @@ public class YazarConfiguration : IEntityTypeConfiguration<Yazar>
         builder.Property(y => y.UpdatedDate).HasColumnName("UpdatedDate");
         builder.Property(y => y.DeletedDate).HasColumnName("DeletedDate");
 
-        builder.HasMany(y => y.EserlerYazarlar)
+        builder.HasMany(y => y.Eserler)
             .WithOne(ey => ey.Yazar)
             .HasForeignKey(ey => ey.YazarId)
             .OnDelete(DeleteBehavior.Cascade);
